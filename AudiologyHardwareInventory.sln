@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudiologyHardwareInventory", "AudiologyHardwareInventory\AudiologyHardwareInventory.csproj", "{F87FA394-0665-4FC1-88B4-F1BF46F95499}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudiologyHardwareInventory.Test", "AudiologyHardwareInventory.Test\AudiologyHardwareInventory.Test.csproj", "{A545D46F-8B4C-424F-8E8D-531817972E93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F87FA394-0665-4FC1-88B4-F1BF46F95499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F87FA394-0665-4FC1-88B4-F1BF46F95499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F87FA394-0665-4FC1-88B4-F1BF46F95499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F87FA394-0665-4FC1-88B4-F1BF46F95499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A545D46F-8B4C-424F-8E8D-531817972E93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A545D46F-8B4C-424F-8E8D-531817972E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A545D46F-8B4C-424F-8E8D-531817972E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A545D46F-8B4C-424F-8E8D-531817972E93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2B60350-A368-4221-B3E4-66E6502D59A6}
+	EndGlobalSection
+EndGlobal
