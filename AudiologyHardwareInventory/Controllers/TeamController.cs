@@ -15,6 +15,8 @@ namespace AudiologyHardwareInventory.Controllers
         {
             this._teamOperations = teamOperations;
         }
+
+        //Check status
         public IActionResult Status()
         {
            var result= _teamOperations.CheckHardwareStatus();
