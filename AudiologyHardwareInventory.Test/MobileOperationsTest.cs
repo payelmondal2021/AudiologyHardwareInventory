@@ -39,7 +39,7 @@ namespace AudiologyHardwareInventory.Test
             IMobile mobileOperations = new MobileOperations(mobileRepository, context);
             return mobileOperations;
         }
-        //[Test]
+        ////[Test]
         //public void When_InsertMobile_Called_Then_Data_Inserted()
         //{
         //    var dataToInsert = new Mobile() { ModelId = 1,OSVersion = "2",ChipSetId = 1,DisplayInInches = "20",TeamId = 1 };
