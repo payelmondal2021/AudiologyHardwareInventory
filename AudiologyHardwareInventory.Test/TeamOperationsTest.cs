@@ -42,7 +42,7 @@ namespace AudiologyHardwareInventory.Test
             return teamOperations;
         }
 
-        //[Test]
+        ////[Test]
         //public void When_InsertNewTeam_Called_Then_Data_Inserted()
         //{
         //    var dataToInsert = new Team() { TeamName = "NewTeam", Description = "Working with Siemens Technology" };
