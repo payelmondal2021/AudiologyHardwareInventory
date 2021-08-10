@@ -10,21 +10,10 @@ namespace AudiologyHardwareInventory.DataAccessLayer
 {
     public class HardwareInventoryContext:DbContext
     {
-        //public HardwareInventoryContext()
-        //{
-        //}
-
         public HardwareInventoryContext(DbContextOptions<HardwareInventoryContext> options) : base(options)
         {
 
         }
-
-
-        //protected override  void OnConfiguring(DbContextOptionsBuilder optionsbuilder)
-        //{ 
-        //    optionsbuilder.UseSqlServer(@"Server=MD2VGA1C\\LOCAL_MS_SQL;Database=HardWareInventory;");
-        //}
-
 
         public DbSet<Team> Team { get; set; }
         public DbSet<Manufacturer> Manufacturer { get; set; }
@@ -34,8 +23,6 @@ namespace AudiologyHardwareInventory.DataAccessLayer
         public DbSet<ChipSet> ChipsSet { get; set; }
         public DbSet<Mobile> Mobile { get; set; }
         public DbSet<MobileModels> MobileModels { get; set; }
-       
         public DbSet<HardwareType> HardwareType { get; set; }
-        public DbSet<Hardware> Hardware { get; set; }
     }
 }

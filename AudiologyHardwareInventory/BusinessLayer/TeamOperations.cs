@@ -9,21 +9,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AudiologyHardwareInventory.BusinessLayer
 {
-    public class TeamOperations : ITeamOperations
+    public class TeamOperations : ITeam
     {
         private readonly IRepository<Team> _teamRepository;
         private readonly HardwareInventoryContext _hardwareInventoryContext = null;
-        public TeamOperations(IRepository<Team> teamRepository, HardwareInventoryContext hardwareDetails)
+       
+        public TeamOperations(IRepository<Team> teamRepository, HardwareInventoryContext hardwareInventoryContext)
         {
             this._teamRepository = teamRepository;
-            this._hardwareInventoryContext = hardwareDetails;
+            this._hardwareInventoryContext = hardwareInventoryContext;
         }
-        public IEnumerable<Team> CheckHardwareStatus()
+        public IEnumerable<Team> CheckTeamStatus()
         {
             return _teamRepository.Select();
         }
 
-        public void InsertNewHardware(Team teamDetails)
+        public void InsertNewTeam(Team teamDetails)
         {
             _teamRepository.Create(teamDetails);
         }

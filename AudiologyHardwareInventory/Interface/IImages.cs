@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AudiologyHardwareInventory.BusinessLayer;
 using AudiologyHardwareInventory.Models;
 
 namespace AudiologyHardwareInventory.Interface
 {
-    public interface ITeamOperations
+    public interface IImages
     {
-        IEnumerable<Team> CheckHardwareStatus();
-        void InsertNewHardware(Team team);
-
+        void InsertImages(Images hearingAId);
     }
 }

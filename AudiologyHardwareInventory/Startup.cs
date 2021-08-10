@@ -15,8 +15,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AudiologyHardwareInventory
 {
+    public static class MyAppData
+    {
+        public static IServiceCollection data;
+    }
     public class Startup
     {
+        //public IServiceCollection contextUnitTest = null;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,7 +40,8 @@ namespace AudiologyHardwareInventory
 
 
             services.AddTransient<IRepository<Team>, GenericRepository<Team>>();
-            services.AddScoped<ITeamOperations, TeamOperations>();
+            services.AddScoped<ITeam, TeamOperations>();
+            MyAppData.data=services.AddTransient<TeamOperations>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

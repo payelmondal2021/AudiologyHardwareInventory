@@ -10,22 +10,22 @@ namespace AudiologyHardwareInventory.Controllers
 {
     public class TeamController : Controller
     {
-        private readonly ITeamOperations _teamOperations = null;
-        public TeamController(ITeamOperations teamOperations)
+        //Not using TeamController as of now..Using UNIT Testing
+        private readonly ITeam _teamOperations = null;
+        public TeamController(ITeam teamOperations)
         {
             this._teamOperations = teamOperations;
         }
 
-        //Check status
         public IActionResult Status()
         {
-           var result= _teamOperations.CheckHardwareStatus();
+           var result= _teamOperations.CheckTeamStatus();
             return View();
         }
         public IActionResult AddNewTeam()
         {
             var teamDetails = new Team {TeamName = "AU", Description = "Working with Mobile device"};
-            _teamOperations.InsertNewHardware(teamDetails);
+            _teamOperations.InsertNewTeam(teamDetails);
             return View();
         }
     }

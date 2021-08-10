@@ -11,21 +11,22 @@ using AudiologyHardwareInventory.Interface;
 
 namespace AudiologyHardwareInventory.Controllers
 {
+    //Not Using HomeController as of now...Using UNIT Testing
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ITeamOperations _hardwareOperations;
+        private readonly ITeam _hardwareOperations;
 
 
-        public HomeController(ILogger<HomeController> logger, ITeamOperations hardwareOperation)
+        public HomeController(ILogger<HomeController> logger, ITeam teamOperation)
         {
             _logger = logger;
-            _hardwareOperations = hardwareOperation;
+            _hardwareOperations = teamOperation;
         }
 
         public IActionResult Index()
         {
-            var result = _hardwareOperations.CheckHardwareStatus();
+            var result = _hardwareOperations.CheckTeamStatus();
             return View();
         }
 
