@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AudiologyHardwareInventory.DataAccessLayer;
 using AudiologyHardwareInventory.Interface;
 using AudiologyHardwareInventory.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AudiologyHardwareInventory.BusinessLayer
 {
@@ -20,6 +21,11 @@ namespace AudiologyHardwareInventory.BusinessLayer
         public void InsertHardwareType(HardwareType hardwareType)
         {
             _imagesRepository.Create(hardwareType);
+        }
+        public void UpdateHardwareType(HardwareType hardwareType)
+        {
+            _hardwareInventoryContext.Entry(hardwareType).State = EntityState.Modified;
+            _imagesRepository.Update();
         }
     }
 }

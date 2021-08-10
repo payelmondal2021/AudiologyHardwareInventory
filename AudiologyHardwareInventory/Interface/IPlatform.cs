@@ -9,5 +9,6 @@ namespace AudiologyHardwareInventory.Interface
     public interface IPlatform
     {
         void InsertPlatform(Platform platform);
+        void UpdatePlatform(Platform platform);
     }
 }

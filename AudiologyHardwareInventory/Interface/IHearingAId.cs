@@ -9,5 +9,6 @@ namespace AudiologyHardwareInventory.Interface
     public interface IHearingAId
     {
         void InsertHearingAId(HearingAId hearingAId);
+        void UpdateHearingAId(HearingAId hearingAId);
     }
 }

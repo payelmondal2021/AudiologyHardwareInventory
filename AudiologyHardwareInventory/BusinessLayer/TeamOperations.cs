@@ -6,6 +6,7 @@ using AudiologyHardwareInventory.DataAccessLayer;
 using AudiologyHardwareInventory.Interface;
 using AudiologyHardwareInventory.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AudiologyHardwareInventory.BusinessLayer
 {
@@ -27,6 +28,11 @@ namespace AudiologyHardwareInventory.BusinessLayer
         public void InsertNewTeam(Team teamDetails)
         {
             _teamRepository.Create(teamDetails);
+        }
+        public void UpdateTeam(Team teamDetails)
+        {
+            _hardwareInventoryContext.Entry(teamDetails).State = EntityState.Modified;
+            _teamRepository.Update();
         }
     }
 }

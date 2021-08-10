@@ -17,6 +17,22 @@ namespace AudiologyHardwareInventory.Test
     public class TeamOperationsTest
     {
         public ITeam _teamOperationsInstance = null;
+        private IRepository<Team> _fakeRepository = null;
+        private HardwareInventoryContext _fakeContext = null;
+        private TeamOperations _teamOperations = null;
+
+        [SetUp]
+        public void Setup()
+        {
+            _fakeRepository = Substitute.For<IRepository<Team>>();
+        }
+        [TearDown]
+        public void CleanUp()
+        {
+            _fakeRepository = null;
+            _fakeContext = null;
+            _teamOperations = null;
+        }
 
         public  ITeam TeamOperationsInstance()
         {
@@ -25,32 +41,48 @@ namespace AudiologyHardwareInventory.Test
             ITeam teamOperations = new TeamOperations(teamRepository, context);
             return teamOperations;
         }
-        
-        [Test]
-        public void When_InsertNewTeam_Called_Then_Data_Inserted()
-        {
-            var dataToInsert = new Team() { TeamName = "Team2", Description = "Working for AU" };
-            _teamOperationsInstance= TeamOperationsInstance();
-            _teamOperationsInstance.InsertNewTeam(dataToInsert);
-        }
+
+        //[Test]
+        //public void When_InsertNewTeam_Called_Then_Data_Inserted()
+        //{
+        //    var dataToInsert = new Team() { TeamName = "NewTeam", Description = "Working with Siemens Technology" };
+        //    _teamOperationsInstance = TeamOperationsInstance();
+        //    _teamOperationsInstance.InsertNewTeam(dataToInsert);
+        //}
 
         [Test]
         public void When_InsertNewTeam_Called_Then_Check_Argument_Type()
         {
-            var fakeRepository = Substitute.For<IRepository<Team>>();
-            var fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
-            var teamOperations = new TeamOperations(fakeRepository, fakeContext);
-            teamOperations.InsertNewTeam(Arg.Any<Team>());
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _teamOperations = new TeamOperations(_fakeRepository, _fakeContext);
+            _teamOperations.InsertNewTeam(Arg.Any<Team>());
         }
         [Test]
         public void When_InsertNewTeam_Called_Then_Create_Function_Received_Call_Once()
         {
             var team = new Team() { TeamName = "Team2", Description = "Working for AU" };
-            var fakeRepository = Substitute.For<IRepository<Team>>();
-            var fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
-            var teamOperations = new TeamOperations(fakeRepository, fakeContext);
-            teamOperations.InsertNewTeam(team);
-            fakeRepository.Received().Create(team);
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _teamOperations = new TeamOperations(_fakeRepository, _fakeContext);
+            _teamOperations.InsertNewTeam(team);
+            _fakeRepository.Received().Create(team);
+        }
+
+        //[Test]
+        //public void When_UpdateTeam_Called_Then_Data_Updated()
+        //{
+        //    var team = new Team() {TeamId = 1,TeamName = "updated_Team2", Description = "Working for AU" };
+        //    _teamOperationsInstance = TeamOperationsInstance();
+        //    _teamOperationsInstance.UpdateTeam(team);
+        //}
+
+        [Test]
+        public void When_UpdateTeam_Called_Then_Update_Function_Received_Call_Once()
+        {
+            var team = new Team() {TeamId = 1,TeamName = "Updated_Team2", Description = "Working for AU" };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _teamOperations = new TeamOperations(_fakeRepository, _fakeContext);
+            _teamOperations.UpdateTeam(team);
+            _fakeRepository.Received().Update();
         }
 
     }

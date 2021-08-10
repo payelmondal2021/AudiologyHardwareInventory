@@ -9,5 +9,6 @@ namespace AudiologyHardwareInventory.Interface
     public interface IChipset
     {
         void InsertChipset(ChipSet Chipset);
+        void UpdateChipSet(ChipSet ChipSet);
     }
 }

@@ -9,5 +9,6 @@ namespace AudiologyHardwareInventory.Interface
     public interface IManufacturer
     {
         void InsertManufacturer(Manufacturer manufacturer);
+        void UpdateManufacturer(Manufacturer manufacturer);
     }
 }

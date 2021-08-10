@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AudiologyHardwareInventory.DataAccessLayer;
 using AudiologyHardwareInventory.Interface;
 using AudiologyHardwareInventory.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AudiologyHardwareInventory.BusinessLayer
 {
@@ -21,6 +22,11 @@ namespace AudiologyHardwareInventory.BusinessLayer
         public void InsertPlatform(Platform platform)
         {
             _platformRepository.Create(platform);
+        }
+        public void UpdatePlatform(Platform platform)
+        {
+            _hardwareInventoryContext.Entry(platform).State = EntityState.Modified;
+            _platformRepository.Update();
         }
     }
 }

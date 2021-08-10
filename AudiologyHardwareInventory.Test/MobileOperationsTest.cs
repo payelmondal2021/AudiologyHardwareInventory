@@ -15,6 +15,22 @@ namespace AudiologyHardwareInventory.Test
     public class MobileOperationsTest
     {
         public IMobile _mobileOperations = null;
+        private IRepository<Mobile> _fakeRepository = null;
+        private HardwareInventoryContext _fakeContext = null;
+
+        [SetUp]
+        public void Setup()
+        {
+            _fakeRepository = Substitute.For<IRepository<Mobile>>();
+        }
+        [TearDown]
+        public void CleanUp()
+        {
+            _fakeRepository = null;
+            _fakeContext = null;
+            _mobileOperations = null;
+        }
+
 
         public IMobile MobileOperationsInstance()
         {
@@ -23,31 +39,47 @@ namespace AudiologyHardwareInventory.Test
             IMobile mobileOperations = new MobileOperations(mobileRepository, context);
             return mobileOperations;
         }
-        [Test]
-        public void When_InsertMobile_Called_Then_Data_Inserted()
-        {
-            var dataToInsert = new Mobile() { ModelId = 1,OSVersion = "2",ChipSetId = 1,DisplayInInches = "20",TeamId = 1 };
-            _mobileOperations = MobileOperationsInstance();
-            _mobileOperations.InsertMobile(dataToInsert);
-        }
+        //[Test]
+        //public void When_InsertMobile_Called_Then_Data_Inserted()
+        //{
+        //    var dataToInsert = new Mobile() { ModelId = 1,OSVersion = "2",ChipSetId = 1,DisplayInInches = "20",TeamId = 1 };
+        //    _mobileOperations = MobileOperationsInstance();
+        //    _mobileOperations.InsertMobile(dataToInsert);
+        //}
 
         [Test]
         public void When_InsertMobile_Called_Then_Check_Argument_Type()
         {
-            var fakeRepository = Substitute.For<IRepository<Mobile>>();
-            var fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
-            var mobileOperations = new MobileOperations(fakeRepository, fakeContext);
-            mobileOperations.InsertMobile(Arg.Any<Mobile>());
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _mobileOperations = new MobileOperations(_fakeRepository, _fakeContext);
+            _mobileOperations.InsertMobile(Arg.Any<Mobile>());
         }
         [Test]
         public void When_InsertMobile_Function_Called_Then_Create_Function_Received_Call_Once()
         {
             var mobile = new Mobile() { ModelId = 1, OSVersion = "2", ChipSetId = 1, DisplayInInches = "20", TeamId = 1 };
-            var fakeRepository = Substitute.For<IRepository<Mobile>>();
-            var fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
-            var mobileOperations = new MobileOperations(fakeRepository, fakeContext);
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            var mobileOperations = new MobileOperations(_fakeRepository, _fakeContext);
             mobileOperations.InsertMobile(mobile);
-            fakeRepository.Received(1).Create(mobile);
+            _fakeRepository.Received(1).Create(mobile);
+        }
+
+        //[Test]
+        //public void When_UpdateMobile_Called_Then_Data_Updated()
+        //{
+        //    var mobile = new Mobile() { MobileId = 1, ModelId = 1, OSVersion = "2", ChipSetId = 1, DisplayInInches = "Updated_20", TeamId = 1 };
+        //    _mobileOperations = MobileOperationsInstance();
+        //    _mobileOperations.UpdateMobile(mobile);
+        //}
+
+        [Test]
+        public void When_UpdateMobile_Function_Called_Then_Update_Function_Received_Call_Once()
+        {
+            var mobile = new Mobile() {MobileId = 1,ModelId = 1, OSVersion = "2", ChipSetId = 1, DisplayInInches = "Updated_20", TeamId = 1 };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _mobileOperations = new MobileOperations(_fakeRepository, _fakeContext);
+            _mobileOperations.UpdateMobile(mobile);
+            _fakeRepository.Received(1).Update();
         }
 
 

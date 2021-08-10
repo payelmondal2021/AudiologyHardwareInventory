@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AudiologyHardwareInventory.DataAccessLayer;
 using AudiologyHardwareInventory.Interface;
 using AudiologyHardwareInventory.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AudiologyHardwareInventory.BusinessLayer
 {
@@ -21,6 +22,11 @@ namespace AudiologyHardwareInventory.BusinessLayer
         public void InsertMobileModels(MobileModels mobileModels)
         {
             _mobileModelRepository.Create(mobileModels);
+        }
+        public void UpdateMobileModels(MobileModels mobileModels)
+        {
+            _hardwareInventoryContext.Entry(mobileModels).State = EntityState.Modified;
+            _mobileModelRepository.Update();
         }
     }
 }

@@ -9,5 +9,6 @@ namespace AudiologyHardwareInventory.Interface
     public interface IMobileModels
     {
         void InsertMobileModels(MobileModels mobileModels);
+        void UpdateMobileModels(MobileModels mobileModels);
     }
 }

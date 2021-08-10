@@ -10,5 +10,6 @@ namespace AudiologyHardwareInventory.Interface
     public interface IImages
     {
         void InsertImages(Images hearingAId);
+        void UpdateImages(Images images);
     }
 }

@@ -14,6 +14,22 @@ namespace AudiologyHardwareInventory.Test
     public class MobileModelsOperationsTest
     {
         public IMobileModels _mobileModelsOperations = null;
+        private IRepository<MobileModels> _fakeRepository = null;
+        private HardwareInventoryContext _fakeContext = null;
+
+        [SetUp]
+        public void Setup()
+        {
+            _fakeRepository = Substitute.For<IRepository<MobileModels>>();
+        }
+        [TearDown]
+        public void CleanUp()
+        {
+            _fakeRepository = null;
+            _fakeContext = null;
+            _mobileModelsOperations = null;
+        }
+
 
         public IMobileModels MobileModelsOperationsInstance()
         {
@@ -22,31 +38,48 @@ namespace AudiologyHardwareInventory.Test
             IMobileModels mobileModelsOperations = new MobileModelsOperations(mobileModelsRepository, context);
             return mobileModelsOperations;
         }
-        [Test]
-        public void When_InsertMobileModels_Called_Then_Data_Inserted()
-        {
-            var dataToInsert = new MobileModels() { ModelName = "MobileModels", Description = "Description" };
-            _mobileModelsOperations = MobileModelsOperationsInstance();
-            _mobileModelsOperations.InsertMobileModels(dataToInsert);
-        }
+        //[Test]
+        //public void When_InsertMobileModels_Called_Then_Data_Inserted()
+        //{
+        //    var dataToInsert = new MobileModels() { ModelName = "MobileModels", Description = "Description" };
+        //    _mobileModelsOperations = MobileModelsOperationsInstance();
+        //    _mobileModelsOperations.InsertMobileModels(dataToInsert);
+        //}
 
         [Test]
         public void When_InsertMobileModels_Called_Then_Check_Argument_Type()
         {
-            var fakeRepository = Substitute.For<IRepository<MobileModels>>();
-            var fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
-            var mobileModelsOperations = new MobileModelsOperations(fakeRepository, fakeContext);
-            mobileModelsOperations.InsertMobileModels(Arg.Any<MobileModels>());
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _mobileModelsOperations = new MobileModelsOperations(_fakeRepository, _fakeContext);
+            _mobileModelsOperations.InsertMobileModels(Arg.Any<MobileModels>());
         }
+
         [Test]
         public void When_InsertMobileModels_Called_Then_Create_Function_Received_Call_Once()
         {
             var mobileModel = new MobileModels() { ModelName = "MobileModels", Description = "Description" };
-            var fakeRepository = Substitute.For<IRepository<MobileModels>>();
-            var fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
-            var mobileModelOperations = new MobileModelsOperations(fakeRepository, fakeContext);
-            mobileModelOperations.InsertMobileModels(mobileModel);
-            fakeRepository.Received(1).Create(mobileModel);
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _mobileModelsOperations = new MobileModelsOperations(_fakeRepository, _fakeContext);
+            _mobileModelsOperations.InsertMobileModels(mobileModel);
+            _fakeRepository.Received(1).Create(mobileModel);
+        }
+
+        //[Test]
+        //public void When_UpdateMobileModels_Called_Then_Data_Updated()
+        //{
+        //    var dataToUpdate = new MobileModels() {ModelId = 1,ModelName = "Updated_MobileModels", Description = "Description" };
+        //    _mobileModelsOperations = MobileModelsOperationsInstance();
+        //    _mobileModelsOperations.UpdateMobileModels(dataToUpdate);
+        //}
+
+        [Test]
+        public void When_UpdateMobileModels_Called_Then_Update_Function_Received_Call_Once()
+        {
+            var mobileModel = new MobileModels() { ModelName = "MobileModels", Description = "Description" };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _mobileModelsOperations = new MobileModelsOperations(_fakeRepository, _fakeContext);
+            _mobileModelsOperations.UpdateMobileModels(mobileModel);
+            _fakeRepository.Received(1).Update();
         }
     }
 }

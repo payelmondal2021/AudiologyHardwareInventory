@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AudiologyHardwareInventory.DataAccessLayer;
 using AudiologyHardwareInventory.Interface;
 using AudiologyHardwareInventory.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AudiologyHardwareInventory.BusinessLayer
 {
@@ -21,6 +22,11 @@ namespace AudiologyHardwareInventory.BusinessLayer
         public void InsertChipset(ChipSet chipset)
         {
             _chipsetRepository.Create(chipset);
+        }
+        public void UpdateChipSet(ChipSet chipSet)
+        {
+            _hardwareInventoryContext.Entry(chipSet).State = EntityState.Modified;
+            _chipsetRepository.Update();
         }
     }
 }

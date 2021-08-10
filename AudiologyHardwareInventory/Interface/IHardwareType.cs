@@ -9,5 +9,6 @@ namespace AudiologyHardwareInventory.Interface
     public interface IHardwareType
     {
         void InsertHardwareType(HardwareType hardwareType);
+        void UpdateHardwareType(HardwareType hardwareType);
     }
 }

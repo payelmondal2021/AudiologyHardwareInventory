@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AudiologyHardwareInventory.DataAccessLayer;
 using AudiologyHardwareInventory.Interface;
 using AudiologyHardwareInventory.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AudiologyHardwareInventory.BusinessLayer
 {
@@ -21,6 +22,11 @@ namespace AudiologyHardwareInventory.BusinessLayer
         public void InsertHearingAId(HearingAId hearingAId)
         {
             _hearingAIdRepository.Create(hearingAId);
+        }
+        public void UpdateHearingAId(HearingAId hearingAId)
+        {
+            _hardwareInventoryContext.Entry(hearingAId).State = EntityState.Modified;
+            _hearingAIdRepository.Update();
         }
     }
 }

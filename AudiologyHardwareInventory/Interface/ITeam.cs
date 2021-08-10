@@ -10,6 +10,7 @@ namespace AudiologyHardwareInventory.Interface
     {
         IEnumerable<Team> CheckTeamStatus();
         void InsertNewTeam(Team team);
+        void UpdateTeam(Team teamDetails);
 
     }
 }
