@@ -6,9 +6,11 @@ using AudiologyHardwareInventory.Models;
 
 namespace AudiologyHardwareInventory.Interface
 {
-    public interface IChipset
+    public interface IChipSet
     {
-        void InsertChipset(ChipSet Chipset);
-        void UpdateChipSet(ChipSet ChipSet);
+        void InsertChipSet(ChipSet chipSet);
+        void UpdateChipSet(ChipSet chipSet);
+        void DeleteChipSet(ChipSet chipSet);
+        IEnumerable<ChipSet> DisplayChipSet();
     }
 }

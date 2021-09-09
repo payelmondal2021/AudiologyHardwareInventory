@@ -74,11 +74,30 @@ namespace AudiologyHardwareInventory.Test
         [Test]
         public void When_UpdateImages_Called_Then_Update_Function_Received_Call_Once()
         {
-            var dataToUpdate = new Images() { ImageUrlId = 3, ImageUrl = "UpdatedImageURL", HearingAidId = 1 }; var image = new Images() { ImageUrl = "ImageURL", HearingAidId = 1 };
+             var image = new Images() { ImageUrl = "ImageURL", HearingAidId = 1 };
             _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
             _imagesOperations = new ImagesOperations(_fakeRepository, _fakeContext);
             _imagesOperations.UpdateImages(image);
             _fakeRepository.Received(1).Update();
+        }
+
+        [Test]
+        public void When_DeleteImages_Called_Then_Delete_Function_Received_Call_Once()
+        {
+             var image = new Images() { ImageUrl = "ImageURL", HearingAidId = 1 };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _imagesOperations = new ImagesOperations(_fakeRepository, _fakeContext);
+            _imagesOperations.DeleteImages(image);
+            _fakeRepository.Received(1).Delete(image);
+        }
+
+        [Test]
+        public void When_SelectImages_Called_Then_Delete_Function_Received_Call_Once()
+        {
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _imagesOperations = new ImagesOperations(_fakeRepository, _fakeContext);
+            _imagesOperations.DisplayImages();
+            _fakeRepository.Received(1).Select();
         }
     }
 }

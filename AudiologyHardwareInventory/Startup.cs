@@ -29,14 +29,17 @@ namespace AudiologyHardwareInventory
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
 
-
+            // string DevConnection= "Server=MD2VGA1C\\LOCAL_MS_SQL;Database=HardWareInventory;Trusted_Connection=True;MultipleActiveResultSets=True;"
             services.AddDbContext<HardwareInventoryContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            //services.AddDbContext<HardwareInventoryContext>(options =>
+            //    options.UseSqlServer(DevConnection));
 
 
             services.AddTransient<IRepository<Team>, GenericRepository<Team>>();

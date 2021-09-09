@@ -20,7 +20,7 @@ namespace AudiologyHardwareInventory.BusinessLayer
             this._teamRepository = teamRepository;
             this._hardwareInventoryContext = hardwareInventoryContext;
         }
-        public IEnumerable<Team> CheckTeamStatus()
+        public IEnumerable<Team> DisplayTeamStatus()
         {
             return _teamRepository.Select();
         }
@@ -33,6 +33,10 @@ namespace AudiologyHardwareInventory.BusinessLayer
         {
             _hardwareInventoryContext.Entry(teamDetails).State = EntityState.Modified;
             _teamRepository.Update();
+        }
+        public void DeleteTeam(Team teamDetails)
+        {
+            _teamRepository.Delete(teamDetails);
         }
     }
 }

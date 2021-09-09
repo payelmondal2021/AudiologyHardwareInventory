@@ -37,6 +37,7 @@ namespace AudiologyHardwareInventory.Test
             IRepository<HearingAId> hearingAIdRepository = new GenericRepository<HearingAId>(context);
             IHearingAId hearingAIdOperations = new HearingAIdOperations(hearingAIdRepository, context);
             return hearingAIdOperations;
+
         }
         //[Test]
         //public void When_InsertHearingAId_Called_Then_Data_Inserted()
@@ -78,6 +79,25 @@ namespace AudiologyHardwareInventory.Test
             _hearingAIdOperations = new HearingAIdOperations(_fakeRepository, _fakeContext);
             _hearingAIdOperations.UpdateHearingAId(hearingAId);
             _fakeRepository.Received(1).Update();
+        }
+
+        [Test]
+        public void When_DeleteHearingAId_Called_Then_Update_Function_Received_Call_Once()
+        {
+            var hearingAId = new HearingAId() { HearingAidId = 1, HearingAidName = "HearingAidName", Side = "test", SerialNumber = "A12", Description = "Working for AU", Status = "Working", ManufacturerId = 1, TeamId = 1, PlatformId = 1 };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _hearingAIdOperations = new HearingAIdOperations(_fakeRepository, _fakeContext);
+            _hearingAIdOperations.DeleteHearingAId(hearingAId);
+            _fakeRepository.Received(1).Delete(hearingAId);
+        }
+
+        [Test]
+        public void When_DisplayHearingAId_Called_Then_Select_Function_Received_Call_Once()
+        {
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _hearingAIdOperations = new HearingAIdOperations(_fakeRepository, _fakeContext);
+            _hearingAIdOperations.DisplayHearingAId();
+            _fakeRepository.Received(1).Select();
         }
     }
 }

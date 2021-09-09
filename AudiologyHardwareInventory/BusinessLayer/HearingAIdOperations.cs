@@ -28,5 +28,13 @@ namespace AudiologyHardwareInventory.BusinessLayer
             _hardwareInventoryContext.Entry(hearingAId).State = EntityState.Modified;
             _hearingAIdRepository.Update();
         }
+        public void DeleteHearingAId(HearingAId hearingAId)
+        {
+            _hearingAIdRepository.Delete(hearingAId);
+        }
+        public void DisplayHearingAId()
+        {
+            _hearingAIdRepository.Select();
+        }
     }
 }

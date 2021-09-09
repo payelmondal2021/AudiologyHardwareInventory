@@ -10,5 +10,7 @@ namespace AudiologyHardwareInventory.Interface
     {
         void InsertHardwareType(HardwareType hardwareType);
         void UpdateHardwareType(HardwareType hardwareType);
+        void DeleteHardwareType(HardwareType hardwareType);
+        IEnumerable<HardwareType> DisplayHardwareType();
     }
 }

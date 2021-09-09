@@ -82,6 +82,25 @@ namespace AudiologyHardwareInventory.Test
             _fakeRepository.Received(1).Update();
         }
 
+        [Test]
+        public void When_DeleteMobile_Function_Called_Then_Delete_Function_Received_Call_Once()
+        {
+            var mobile = new Mobile() { MobileId = 1, ModelId = 1, OSVersion = "2", ChipSetId = 1, DisplayInInches = "Updated_20", TeamId = 1 };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _mobileOperations = new MobileOperations(_fakeRepository, _fakeContext);
+            _mobileOperations.DeleteMobile(mobile);
+            _fakeRepository.Received(1).Delete(mobile);
+        }
+
+        [Test]
+        public void When_DisplayMobile_Function_Called_Then_Select_Function_Received_Call_Once()
+        {
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _mobileOperations = new MobileOperations(_fakeRepository, _fakeContext);
+            _mobileOperations.DisplayMobile();
+            _fakeRepository.Received(1).Select();
+        }
+
 
     }
 }

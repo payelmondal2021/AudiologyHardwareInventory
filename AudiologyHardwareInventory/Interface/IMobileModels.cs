@@ -10,5 +10,7 @@ namespace AudiologyHardwareInventory.Interface
     {
         void InsertMobileModels(MobileModels mobileModels);
         void UpdateMobileModels(MobileModels mobileModels);
+        void DeleteMobileModels(MobileModels mobileModels);
+        IEnumerable<MobileModels> DisplayMobileModels();
     }
 }

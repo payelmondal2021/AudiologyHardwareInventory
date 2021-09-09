@@ -10,5 +10,7 @@ namespace AudiologyHardwareInventory.Interface
     {
         void InsertPlatform(Platform platform);
         void UpdatePlatform(Platform platform);
+        void DeletePlatform(Platform platform);
+        IEnumerable<Platform> DisplayPlatform();
     }
 }

@@ -85,5 +85,25 @@ namespace AudiologyHardwareInventory.Test
             _fakeRepository.Received().Update();
         }
 
+        [Test]
+        public void When_DeleteTeam_Called_Then_Delete_Function_Received_Call_Once()
+        {
+            var team = new Team() { TeamId = 1, TeamName = "Updated_Team2", Description = "Working for AU" };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _teamOperations = new TeamOperations(_fakeRepository, _fakeContext);
+            _teamOperations.DeleteTeam(team);
+            _fakeRepository.Received().Delete(team);
+        }
+
+        [Test]
+        public void When_DisplayTeam_Called_Then_Select_Function_Received_Call_Once()
+        {
+            var team = new Team() { TeamId = 1, TeamName = "Updated_Team2", Description = "Working for AU" };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _teamOperations = new TeamOperations(_fakeRepository, _fakeContext);
+            _teamOperations.DisplayTeamStatus();
+            _fakeRepository.Received().Select();
+        }
+
     }
 }

@@ -27,5 +27,14 @@ namespace AudiologyHardwareInventory.BusinessLayer
             _hardwareInventoryContext.Entry(hardwareType).State = EntityState.Modified;
             _imagesRepository.Update();
         }
+        public void DeleteHardwareType(HardwareType hardwareType)
+        {
+            _imagesRepository.Delete(hardwareType);
+        }
+        public IEnumerable<HardwareType> DisplayHardwareType()
+        {
+           return _imagesRepository.Select();
+        }
+
     }
 }

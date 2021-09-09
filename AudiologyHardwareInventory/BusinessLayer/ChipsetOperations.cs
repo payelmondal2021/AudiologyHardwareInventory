@@ -9,24 +9,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AudiologyHardwareInventory.BusinessLayer
 {
-    public class ChipsetOperations:IChipset
+    public class ChipSetOperations: IChipSet
     {
-        private readonly IRepository<ChipSet> _chipsetRepository;
+        private readonly IRepository<ChipSet> _chipSRepository;
         private readonly HardwareInventoryContext _hardwareInventoryContext = null;
-        public ChipsetOperations(IRepository<ChipSet> chipsetRepository, HardwareInventoryContext hardwareInventoryContext)
+        public ChipSetOperations(IRepository<ChipSet> chipSetRepository, HardwareInventoryContext hardwareInventoryContext)
         {
-            this._chipsetRepository = chipsetRepository;
+            this._chipSRepository = chipSetRepository;
             this._hardwareInventoryContext = hardwareInventoryContext;
         }
 
-        public void InsertChipset(ChipSet chipset)
+        public void InsertChipSet(ChipSet chipSet)
         {
-            _chipsetRepository.Create(chipset);
+            _chipSRepository.Create(chipSet);
         }
         public void UpdateChipSet(ChipSet chipSet)
         {
             _hardwareInventoryContext.Entry(chipSet).State = EntityState.Modified;
-            _chipsetRepository.Update();
+            _chipSRepository.Update();
+        }
+        public void DeleteChipSet(ChipSet chipSet)
+        {
+            _chipSRepository.Delete(chipSet);
+        }
+        public IEnumerable<ChipSet> DisplayChipSet()
+        {
+          return  _chipSRepository.Select();
         }
     }
 }

@@ -79,5 +79,24 @@ namespace AudiologyHardwareInventory.Test
             _platformOperations.UpdatePlatform(platform);
             _fakeRepository.Received(1).Update();
         }
+
+        [Test]
+        public void When_DeletePlatform_Called_Then_Delete_Function_Received_Call_Once()
+        {
+            var platform = new Platform() { PlatformId = 1, PlatformName = "updated_PlatformName", Description = "Working for AU" };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _platformOperations = new PlatformOperations(_fakeRepository, _fakeContext);
+            _platformOperations.DeletePlatform(platform);
+            _fakeRepository.Received(1).Delete(platform);
+        }
+
+        [Test]
+        public void When_DisplayPlatform_Called_Then_Select_Function_Received_Call_Once()
+        {
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _platformOperations = new PlatformOperations(_fakeRepository, _fakeContext);
+            _platformOperations.DisplayPlatform();
+            _fakeRepository.Received(1).Select();
+        }
     }
 }

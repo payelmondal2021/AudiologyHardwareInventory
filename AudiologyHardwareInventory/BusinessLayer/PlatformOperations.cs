@@ -28,5 +28,13 @@ namespace AudiologyHardwareInventory.BusinessLayer
             _hardwareInventoryContext.Entry(platform).State = EntityState.Modified;
             _platformRepository.Update();
         }
+        public void DeletePlatform(Platform platform)
+        {
+            _platformRepository.Delete(platform);
+        }
+        public IEnumerable<Platform> DisplayPlatform()
+        {
+          return  _platformRepository.Select();
+        }
     }
 }

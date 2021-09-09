@@ -78,5 +78,24 @@ namespace AudiologyHardwareInventory.Test
             _hardwareTypeOperations.UpdateHardwareType(hardwareType);
             _fakeRepository.Received(1).Update();
         }
+        
+        [Test]
+        public void When_DeleteHardwareType_Called_Then_Delete_Function_Received_Call_Once()
+        {
+            var hardwareType = new HardwareType() { HardwareTypeId = 1, HardwareName = "Delete_HardWreName1", Description = "Working for AU" };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _hardwareTypeOperations = new HardwareTypeOperations(_fakeRepository, _fakeContext);
+            _hardwareTypeOperations.DeleteHardwareType(hardwareType);
+            _fakeRepository.Received(1).Delete(hardwareType);
+        }
+        [Test]
+        public void When_SelectHardwareType_Called_Then_Select_Function_Received_Call_Once()
+        {
+            var hardwareType = new HardwareType() { HardwareTypeId = 1, HardwareName = "Delete_HardWreName1", Description = "Working for AU" };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _hardwareTypeOperations = new HardwareTypeOperations(_fakeRepository, _fakeContext);
+            _hardwareTypeOperations.DisplayHardwareType();
+            _fakeRepository.Received(1).Select();
+        }
     }
 }

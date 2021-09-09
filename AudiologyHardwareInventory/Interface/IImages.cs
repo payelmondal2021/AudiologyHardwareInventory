@@ -11,5 +11,7 @@ namespace AudiologyHardwareInventory.Interface
     {
         void InsertImages(Images hearingAId);
         void UpdateImages(Images images);
+        void DeleteImages(Images images);
+        IEnumerable<Images> DisplayImages();
     }
 }

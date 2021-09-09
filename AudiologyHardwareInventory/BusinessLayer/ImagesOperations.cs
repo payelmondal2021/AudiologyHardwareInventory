@@ -27,5 +27,13 @@ namespace AudiologyHardwareInventory.BusinessLayer
             _hardwareInventoryContext.Entry(images).State = EntityState.Modified;
             _imagesRepository.Update();
         }
+        public void DeleteImages(Images images)
+        {
+            _imagesRepository.Delete(images);
+        }
+        public IEnumerable<Images> DisplayImages()
+        {
+           return _imagesRepository.Select();
+        }
     }
 }

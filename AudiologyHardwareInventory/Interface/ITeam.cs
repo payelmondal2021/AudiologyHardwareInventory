@@ -8,9 +8,10 @@ namespace AudiologyHardwareInventory.Interface
 {
     public interface ITeam
     {
-        IEnumerable<Team> CheckTeamStatus();
+        IEnumerable<Team> DisplayTeamStatus();
         void InsertNewTeam(Team team);
         void UpdateTeam(Team teamDetails);
+        void DeleteTeam(Team teamDetails);
 
     }
 }

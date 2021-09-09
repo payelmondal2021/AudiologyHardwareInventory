@@ -26,7 +26,7 @@ namespace AudiologyHardwareInventory.Controllers
 
         public IActionResult Index()
         {
-            var result = _hardwareOperations.CheckTeamStatus();
+            var result = _hardwareOperations.DisplayTeamStatus();
             return View();
         }
 

@@ -81,5 +81,24 @@ namespace AudiologyHardwareInventory.Test
             _mobileModelsOperations.UpdateMobileModels(mobileModel);
             _fakeRepository.Received(1).Update();
         }
+
+        [Test]
+        public void When_DeleteMobileModels_Called_Then_Delete_Function_Received_Call_Once()
+        {
+            var mobileModel = new MobileModels() { ModelName = "MobileModels", Description = "Description" };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _mobileModelsOperations = new MobileModelsOperations(_fakeRepository, _fakeContext);
+            _mobileModelsOperations.DeleteMobileModels(mobileModel);
+            _fakeRepository.Received(1).Delete(mobileModel);
+        }
+
+        [Test]
+        public void When_DisplayMobileModels_Called_Then_Select_Function_Received_Call_Once()
+        {
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _mobileModelsOperations = new MobileModelsOperations(_fakeRepository, _fakeContext);
+            _mobileModelsOperations.DisplayMobileModels();
+            _fakeRepository.Received(1).Select();
+        }
     }
 }

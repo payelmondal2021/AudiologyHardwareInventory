@@ -19,7 +19,7 @@ namespace AudiologyHardwareInventory.Controllers
 
         public IActionResult Status()
         {
-           var result= _teamOperations.CheckTeamStatus();
+            var result = _teamOperations.DisplayTeamStatus();
             return View();
         }
         public IActionResult AddNewTeam()

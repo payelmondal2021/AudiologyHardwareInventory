@@ -77,5 +77,24 @@ namespace AudiologyHardwareInventory.Test
             _manufacturerOperations.UpdateManufacturer(dataToUpdate);
             _fakeRepository.Received().Update();
         }
+
+        [Test]
+        public void When_DeleteManufacturer_Called_Then_Delete_Function_Received_Call_Once()
+        {
+            var dataToDelete = new Manufacturer() { ManufacturerId = 1, ManufacturerName = "Updated_ManufacturerName", LogoUrl = "URL", Description = "Working for AU" };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _manufacturerOperations = new ManufacturerOperations(_fakeRepository, _fakeContext);
+            _manufacturerOperations.DeleteManufacturer(dataToDelete);
+            _fakeRepository.Received().Delete(dataToDelete);
+        }
+
+        [Test]
+        public void When_DisplayManufacturer_Called_Then_Display_Function_Received_Call_Once()
+        {
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _manufacturerOperations = new ManufacturerOperations(_fakeRepository, _fakeContext);
+            _manufacturerOperations.DisplayManufacturer();
+            _fakeRepository.Received().Select();
+        }
     }
 }

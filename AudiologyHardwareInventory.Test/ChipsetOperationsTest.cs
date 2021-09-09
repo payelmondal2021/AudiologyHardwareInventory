@@ -13,10 +13,10 @@ namespace AudiologyHardwareInventory.Test
     [TestFixture]
     public class ChipSetOperationsTest
     {
-        public IChipset _chipSet = null;
+        public IChipSet _chipSet = null;
         private IRepository<ChipSet> _fakeRepository = null;
         private HardwareInventoryContext _fakeContext = null;
-        private ChipsetOperations _chipSetOperations = null;
+        private ChipSetOperations _chipSetOperations = null;
 
         [SetUp]
         public void Setup()
@@ -31,11 +31,11 @@ namespace AudiologyHardwareInventory.Test
             _chipSetOperations = null;
         }
 
-        public IChipset ChipSetOperationsInstance()
+        public IChipSet ChipSetOperationsInstance()
         {
             var context = ContextInstance.CreateHardwareInventoryContext();
             IRepository<ChipSet> chipSetRepository = new GenericRepository<ChipSet>(context);
-            IChipset chipSetOperations = new ChipsetOperations(chipSetRepository, context);
+            IChipSet chipSetOperations = new ChipSetOperations(chipSetRepository, context);
             return chipSetOperations;
         }
         //[Test]
@@ -43,23 +43,23 @@ namespace AudiologyHardwareInventory.Test
         //{
         //    var dataToInsert = new ChipSet() { ChipSetName = "ImageURL", Description = "Description" };
         //    _chipSet = ChipSetOperationsInstance();
-        //    _chipSet.InsertChipset(dataToInsert);
+        //    _chipSet.InsertChipSet(dataToInsert);
         //}
 
         [Test]
         public void When_InsertChipSet_Called_Then_Check_Argument_Type()
         {
             _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
-            _chipSetOperations = new ChipsetOperations(_fakeRepository, _fakeContext);
-            _chipSetOperations.InsertChipset(Arg.Any<ChipSet>());
+            _chipSetOperations = new ChipSetOperations(_fakeRepository, _fakeContext);
+            _chipSetOperations.InsertChipSet(Arg.Any<ChipSet>());
         }
         [Test]
         public void When_InsertChipSet_Called_Then_Create_Function_Received_Call_Once()
         {
             var chipSet = new ChipSet() { ChipSetName = "ImageURL", Description = "Description" };
             _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
-            _chipSetOperations = new ChipsetOperations(_fakeRepository, _fakeContext);
-            _chipSetOperations.InsertChipset(chipSet);
+            _chipSetOperations = new ChipSetOperations(_fakeRepository, _fakeContext);
+            _chipSetOperations.InsertChipSet(chipSet);
             _fakeRepository.Received(1).Create(chipSet);
         }
         //[Test]
@@ -75,9 +75,28 @@ namespace AudiologyHardwareInventory.Test
         {
             var chipSet = new ChipSet() {ChipSetId = 1,ChipSetName = "ChipSetName", Description = "Description" };
             _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
-            _chipSetOperations = new ChipsetOperations(_fakeRepository, _fakeContext);
+            _chipSetOperations = new ChipSetOperations(_fakeRepository, _fakeContext);
             _chipSetOperations.UpdateChipSet(chipSet);
             _fakeRepository.Received(1).Update();
+        }
+
+        [Test]
+        public void When_DeleteChipSet_Called_Then_Delete_Method_Receive_Call_Once()
+        {
+            var chipSet = new ChipSet() { ChipSetId = 1, ChipSetName = "ChipSetName", Description = "Description" };
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _chipSetOperations = new ChipSetOperations(_fakeRepository, _fakeContext);
+            _chipSetOperations.DeleteChipSet(chipSet);
+            _fakeRepository.Received(1).Delete(chipSet);
+        }
+
+        [Test]
+        public void When_SelectChipSet_Called_Then_Select_Method_Receive_Call_Once()
+        {
+            _fakeContext = ContextInstance.CreateInMemoryDatabaseContext();
+            _chipSetOperations = new ChipSetOperations(_fakeRepository, _fakeContext);
+            _chipSetOperations.DisplayChipSet();
+            _fakeRepository.Received(1).Select();
         }
     }
 }

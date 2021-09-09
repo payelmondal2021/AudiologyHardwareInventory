@@ -28,5 +28,13 @@ namespace AudiologyHardwareInventory.BusinessLayer
             _hardwareInventoryContext.Entry(mobile).State = EntityState.Modified;
             _mobileRepository.Update();
         }
+        public void DeleteMobile(Mobile mobile)
+        {
+            _mobileRepository.Delete(mobile);
+        }
+        public IEnumerable<Mobile> DisplayMobile()
+        {
+          return  _mobileRepository.Select();
+        }
     }
 }

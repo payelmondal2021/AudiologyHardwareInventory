@@ -15,6 +15,7 @@ namespace AudiologyHardwareInventory.DataAccessLayer
 
         }
 
+
         public DbSet<Team> Team { get; set; }
         public DbSet<Manufacturer> Manufacturer { get; set; }
         public DbSet<Platform> Platform { get; set; }

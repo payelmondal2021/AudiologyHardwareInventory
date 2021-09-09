@@ -10,5 +10,7 @@ namespace AudiologyHardwareInventory.Interface
     {
         void InsertHearingAId(HearingAId hearingAId);
         void UpdateHearingAId(HearingAId hearingAId);
+        void DeleteHearingAId(HearingAId hearingAId);
+        void DisplayHearingAId();
     }
 }

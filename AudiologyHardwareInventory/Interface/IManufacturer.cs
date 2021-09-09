@@ -10,5 +10,7 @@ namespace AudiologyHardwareInventory.Interface
     {
         void InsertManufacturer(Manufacturer manufacturer);
         void UpdateManufacturer(Manufacturer manufacturer);
+        void DeleteManufacturer(Manufacturer manufacturer);
+        IEnumerable<Manufacturer> DisplayManufacturer();
     }
 }

@@ -28,6 +28,14 @@ namespace AudiologyHardwareInventory.BusinessLayer
             _hardwareInventoryContext.Entry(manufacturer).State = EntityState.Modified;
             _manufactureRepository.Update();
         }
+        public void DeleteManufacturer(Manufacturer manufacturer)
+        {
+            _manufactureRepository.Delete(manufacturer);
+        }
+        public IEnumerable<Manufacturer> DisplayManufacturer()
+        {
+           return _manufactureRepository.Select();
+        }
 
     }
 }
